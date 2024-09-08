@@ -2,8 +2,19 @@
 using namespace std;
 
 int main() {
-	int mass[10] = { 3, 2, 1, 4, 5, 10, 7, 8, 9, 6 };
+	int mass[10] = {0};
 	int max = INT_MIN, min = INT_MAX;
+
+	srand(time(NULL));
+
+	for (int i = 0; i < 10; i++) {
+		mass[i] = rand() % 100;
+	}
+
+	cout << "Random mass:" << endl;
+	for (int i = 0; i < 10; i++) {
+		cout << mass[i] << " ";
+	}
 
 	for (int i = 0; i < 10; i++) {
 		if (mass[i] < min) {
@@ -14,7 +25,7 @@ int main() {
 		}
 	}
 	
-	cout << "Max: " << max << endl;
+	cout << "\nMax: " << max << endl;
 	cout << "Min: " << min << endl;
 
 	return 0;
