@@ -13,6 +13,7 @@ int main() {
 
 	srand(time(NULL));
 
+
 	for (int i = 0; i < size; i++) {
 		mass[i] = rand() % 100;
 	}
