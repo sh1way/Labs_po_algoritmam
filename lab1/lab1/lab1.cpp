@@ -2,21 +2,27 @@
 using namespace std;
 
 int main() {
-	int mass[10] = {0};
+	int size;
+
+	cout << "enter size for massiv: ";
+	cin >> size;
+
+	int* mass = (int*) malloc(size * sizeof(int));
+	
 	int max = INT_MIN, min = INT_MAX;
 
 	srand(time(NULL));
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < size; i++) {
 		mass[i] = rand() % 100;
 	}
 
 	cout << "Random mass:" << endl;
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < size; i++) {
 		cout << mass[i] << " ";
 	}
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < size; i++) {
 		if (mass[i] < min) {
 			min = mass[i];
 		}
