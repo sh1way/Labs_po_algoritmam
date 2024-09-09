@@ -2,78 +2,114 @@
 using namespace std;
 
 int main() {
-	int rows, cols;
+	struct student{
+		string surname;
+		string name;
+		int age;
+		string group;
+		string faculty;
+	};
 
-	cout << "enter rows for massiv: ";
-	cin >> rows;
+	student student1;
 
-	cout << "enter cols for massiv: ";
-	cin >> cols;
+	student1.surname = "Ivanov";
+	student1.name = "Ivan";
+	student1.age = 19;
+	student1.group = "23vvv9";
+	student1.faculty = "fvt";
 
-	int** mass = (int**)malloc(rows * sizeof(int*));
-	for (int i = 0; i < rows; i++) {
-		mass[i] = (int*)malloc(cols * sizeof(int));
-	}
-	
-	int max = INT_MIN, min = INT_MAX;
+	student student2;
 
-	srand(time(NULL));
+	student2.surname = "Sidorov";
+	student2.name = "Pavel";
+	student2.age = 24;
+	student2.group = "20ODD1";
+	student2.faculty = "med";
 
+	student student3;
 
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols; j++) {
-			mass[i][j] = rand() % 100;
+	student3.surname = "Salfetka";
+	student3.name = "Marina";
+	student3.age = 18;
+	student3.group = "24vas2";
+	student3.faculty = "ped";
+
+	student student4;
+
+	student4.surname = "Kuznecova";
+	student4.name = "Anna";
+	student4.age = 4;
+	student4.group = "19dot2";
+	student4.faculty = "fite";
+
+	int search;
+
+	cout << "Select search surname/name [1/2]: ";
+	cin >> search;
+
+	string target;
+
+	if (search == 1)
+	{
+		cout << "Enter surname: ";
+		cin >> target;
+
+		if (student1.surname == target)
+		{
+			cout << "Student:\n" << student1.surname << "\n" << student1.name << "\n" << student1.age << "\n" << student1.group << "\n" << student1.faculty;
 		}
-	}
-
-	cout << "\nRandom mass:";
-	for (int i = 0; i < rows; i++) {
-		cout << "\n";
-		for (int j = 0; j < cols; j++) {
-			cout << mass[i][j] << " ";
+		else if (student2.surname == target)
+		{
+			cout << "Student:\n" << student2.surname << "\n" << student2.name << "\n" << student2.age << "\n" << student2.group << "\n" << student2.faculty;
 		}
-	}
-
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols; j++) {
-			if (mass[i][j] < min) {
-				min = mass[i][j];
-			}
-			if (mass[i][j] > max) {
-				max = mass[i][j];
-			}
+		else if (student3.surname == target)
+		{
+			cout << "Student:\n" << student3.surname << "\n" << student3.name << "\n" << student3.age << "\n" << student3.group << "\n" << student3.faculty;
 		}
-	}
-	
-	cout << "\nMax: " << max << endl;
-	cout << "Min: " << min << endl;
-	
-	cout << endl;
-	int rowSUM;
-
-	for (int i = 0; i < rows; i++) {
-		rowSUM = 0;
-		for (int j = 0; j < cols; j++) {
-			rowSUM += mass[i][j];
+		else if (student4.surname == target)
+		{
+			cout << "Student:\n" << student4.surname << "\n" << student4.name << "\n" << student4.age << "\n" << student4.group << "\n" << student4.faculty;
 		}
-		cout << "Summa " << i + 1 << " row: " << rowSUM << endl;
-	}
-	
-	cout << endl;
-	int colSUM;
-
-	for (int j = 0; j < cols; j++) {
-		colSUM = 0;
-		for (int i = 0; i < rows; i++) {
-			colSUM += mass[i][j];
+		else if (student1.surname != target || student2.surname != target || student3.surname != target || student4.surname != target)
+		{
+			cout << "Student not found";
 		}
-		cout << "summa " << j + 1 << "col: " << colSUM << endl;
+
+		return 0;
+	}
+	else if (search == 2) 
+	{
+		cout << "Enter name: ";
+		cin >> target;
+
+		if (student1.name == target)
+		{
+			cout << "Student:\n" << student1.surname << "\n" << student1.name << "\n" << student1.age << "\n" << student1.group << "\n" << student1.faculty;
+		}
+		else if (student2.name == target)
+		{
+			cout << "Student:\n" << student2.surname << "\n" << student2.name << "\n" << student2.age << "\n" << student2.group << "\n" << student2.faculty;
+		}
+		else if (student3.name == target)
+		{
+			cout << "Student:\n" << student3.surname << "\n" << student3.name << "\n" << student3.age << "\n" << student3.group << "\n" << student3.faculty;
+		}
+		else if (student4.name == target)
+		{
+			cout << "Student:\n" << student4.surname << "\n" << student4.name << "\n" << student4.age << "\n" << student4.group << "\n" << student4.faculty;
+		}
+		else if (student1.name != target || student2.name != target || student3.name != target || student4.name != target)
+		{
+			cout << "Student not found";
+		}
+		
+		return 0;
+	}
+	else if (search != 1 || search != 2) 
+	{
+		cout << "Enter 1 or 2, it s sposob search";
 	}
 
-	for (int i = 0; i < rows; ++i) {
-		free(mass[i]);
-	}
-	free(mass);
 
 	return 0;
 }
