@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\Programms\nu tupa ucheba\алгоритмы\Labs_po_algoritmam\lab2\lab2\main.cpp(36,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Programms\nu tupa ucheba\алгоритмы\Labs_po_algoritmam\lab2\lab2\main.cpp(46,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  lab2.vcxproj -> D:\Programms\nu tupa ucheba\алгоритмы\Labs_po_algoritmam\lab2\x64\Debug\lab2.exe
