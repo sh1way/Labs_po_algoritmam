@@ -1,69 +1,101 @@
 #include <iostream>
-#include <time.h>
+#include <ctime>
+#include <cstdlib>
 
-int main(void)
-{
+void shell(int* mass, int size) {
+	int gap, x, j;
+	for (int k = 0; k < size; k++) {
+		gap = mass[k];
+		for (int i = gap; i < size; ++i) {
+			x = mass[i];
+			j = i - gap;
+			while (j >= 0 && x < mass[j]) {
+				mass[j + gap] = mass[j];
+				j -= gap;
+			}
+			mass[j + gap] = x;
+		}
+	}
+}
+
+void qs(int* mass, int left, int right) {//вызов функции: qs(items, 0, count-1); 
+	int i, j;
+	int x, y;
+
+	i = left; j = right;
+
+	/* выбор компаранда */
+	x = mass[(left + right) / 2];
+
+	do {
+		while ((mass[i] < x) && (i < right)) i++;
+		while ((x < mass[j]) && (j > left)) j--;
+
+		if (i <= j) {
+			y = mass[i];
+			mass[i] = mass[j];
+			mass[j] = y;
+			i++; j--;
+		}
+	} while (i <= j);
+
+	if (left < j) qs(mass, left, j);
+	if (i < right) qs(mass, i, right);
+}
+
+int compare(const void* val1, const void* val2) {
+	return (*(int*)val1 - *(int*)val2);
+};
+
+int main(void) {
 	setvbuf(stdin, NULL, _IONBF, 0);
 	setvbuf(stdout, NULL, _IONBF, 0);
 
 	clock_t start, end;
 
-	const int size = 2000;
-	int i, j, r;
+	int size = 25000;
 
-	int** a = (int**)malloc(size * sizeof(int*));
-	for (i = 0; i < size; i++) {
-		a[i] = (int*)malloc(size * sizeof(int));
-	}
+	int* mass = (int*)malloc(size * sizeof(int));
 
-	int** b = (int**)malloc(size * sizeof(int*));
-	for (i = 0; i < size; i++) {
-		b[i] = (int*)malloc(size * sizeof(int));
-	}
-
-	int** c = (int**)malloc(size * sizeof(int*));
-	for (i = 0; i < size; i++) {
-		c[i] = (int*)malloc(size * sizeof(int));
+	srand(time(NULL));
+	//случайный выбор
+	
+	for (int i = 0; i < size; i++) {
+		mass[i] = rand() % 100 - 1;
 	}
 	
-	int elem_c;
-	i = 0;
-	j = 0;
-
-	srand(time(NULL));
-	while (i < size) {
-		while (j < size) {
-			a[i][j] = rand() % 100 + 1;
-			j++;
-		}
-		i++;
+	//возрастающая последовательность чисел
+	/*
+	for (int i = 0; i < size; i++) {
+		mass[i] = i;
 	}
-	srand(time(NULL));
-	i = 0; j = 0;
-	while (i < size) {
-		while (j < size) {
-			b[i][j] = rand() % 100 + 1;
-			j++;
-		}
-		i++;
+	*/
+	//убывающая последовательность чисел
+	/*
+	for (int i = 0; i < size; i++) {
+		mass[i] = size - i;
 	}
+	*/
+	//домик
+	/*
+	for (int i = 0; i < size; i++) {
+		if (i < size / 2) {
+			mass[i] = i;
+		}
+		else {
+			mass[i] = size - i;
+		}
+	}
+	*/
 
 	start = clock();
-
-	for (i = 0; i < size; i++) {
-		for (j = 0; j < size; j++) {
-			elem_c = 0;
-			for (r = 0; r < size; r++) {
-				elem_c = elem_c + a[i][r] * b[r][j];
-				c[i][j] = elem_c;
-			}
-		}
-	}
-
+	//shell(mass, size);
+	//qs(mass, 0, size - 1);
+	qsort(mass, size, sizeof(int), compare);
 	end = clock();
 
-	std::cout << float(start)/float(CLOCKS_PER_SEC)<< std::endl;
-	std::cout << (float(end) - float(start))/float(CLOCKS_PER_SEC)<< std::endl;
+	std::cout << float(end - start)/CLOCKS_PER_SEC<< std::endl;
 
+	free(mass);
 	return(0);
 }
