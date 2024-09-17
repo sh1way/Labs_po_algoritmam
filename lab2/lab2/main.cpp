@@ -53,7 +53,7 @@ int main(void) {
 
 	clock_t start, end;
 
-	int size = 25000;
+	int size = 50000;
 
 	int* mass = (int*)malloc(size * sizeof(int));
 
