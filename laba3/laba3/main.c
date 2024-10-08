@@ -84,38 +84,35 @@ struct node* find(char* name) {
     return NULL;
 }
 
-/* Удаление элемента по содержимому. */
+/* Удаление последнего элемента. */
 void del(char* name) {
-    struct node* struc = head; // указатель, проходящий по списку установлен на начало списка 
-    struct node* prev = NULL; // указатель на предшествующий удаляемому элемент 
-    if (head == NULL) { // если голова списка равна NULL, то список пуст 
-        printf("Список пуст\n");
+    if (head == NULL) {
+        printf("Список пуст, удаление невозможно\n");
         return;
     }
-    // Удаление первого элемента
-    if (strcmp(name, struc->inf) == 0) {
-        head = struc->next;
-        free(struc);
-        dlinna--; // уменьшаем длину списка
-        printf("Элемент удалён: %s\n", name);
+
+    // Если в списке только один элемент
+    if (head == last) {
+        printf("Удалён элемент: %s\n", head->inf);
+        free(head);
+        head = NULL;
+        last = NULL;
+        dlinna--;
         return;
     }
-    // Поиск и удаление элемента
-    while (struc != NULL) {
-        if (strcmp(name, struc->inf) == 0) {
-            prev->next = struc->next;
-            if (struc == last) {
-                last = prev; // обновляем указатель на последний элемент
-            }
-            free(struc);
-            dlinna--;
-            printf("Элемент удалён: %s\n", name);
-            return;
-        }
-        prev = struc;
-        struc = struc->next;
+
+    // Проход к предпоследнему элементу
+    struct node* current = head;
+    while (current->next != last) {
+        current = current->next;
     }
-    printf("Элемент не найден\n");
+
+    // Удаляем последний элемент
+    printf("Удалён элемент: %s\n", last->inf);
+    free(last);
+    last = current;
+    last->next = NULL;
+    dlinna--;
 }
 
 int main() {
@@ -136,10 +133,11 @@ int main() {
         printf("Найденный элемент: %s\n", f->inf);
     }
 
-    printf("Введите элемент для удаления: ");
+    printf("Введите _1_ для удаления элемента: ");
     scanf("%s", s);
-    
-    del(s);
+    if (strcmp(s, "1") == 0) {
+        del(s);
+    }
     review();
 
     return 0;
