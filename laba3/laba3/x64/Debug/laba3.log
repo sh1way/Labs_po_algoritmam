@@ -1,2 +1,5 @@
 ﻿  main.c
+D:\Programms\nu tupa ucheba\алгоритмы\Labs_po_algoritmam\laba3\laba3\main.c(82,16): warning C4026: функция объявлена со списком формальных параметров
+D:\Programms\nu tupa ucheba\алгоритмы\Labs_po_algoritmam\laba3\laba3\main.c(116,13): warning C4087: del: объявление с "void"-списком параметров
+  LINK : не найден или не выполнена сборка D:\Programms\nu tupa ucheba\алгоритмы\Labs_po_algoritmam\laba3\x64\Debug\laba3.exe при последней инкрементной компоновке; выполняется полная компоновка
   laba3.vcxproj -> D:\Programms\nu tupa ucheba\алгоритмы\Labs_po_algoritmam\laba3\x64\Debug\laba3.exe

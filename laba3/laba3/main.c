@@ -41,14 +41,8 @@ void spstore(void) {
     struct node* p = get_struct();
     if (p == NULL) return;
 
-    if (head == NULL) { // если списка нет, то устанавливаем голову  
-        head = p;
-        last = p;
-    }
-    else { // список уже есть, то вставляем в конец 
-        last->next = p;
-        last = p;
-    }
+    p->next = head;
+    head = p;
     dlinna++; // увеличиваем длину списка
     printf("Элемент добавлен: %s\n", p->inf);
 }
@@ -85,33 +79,16 @@ struct node* find(char* name) {
 }
 
 /* Удаление последнего элемента. */
-void del(char* name) {
+void del(void) {
     if (head == NULL) {
-        printf("Список пуст, удаление невозможно\n");
+        printf("Стек пуст, удаление невозможно\n");
         return;
     }
 
-    // Если в списке только один элемент
-    if (head == last) {
-        printf("Удалён элемент: %s\n", head->inf);
-        free(head);
-        head = NULL;
-        last = NULL;
-        dlinna--;
-        return;
-    }
-
-    // Проход к предпоследнему элементу
-    struct node* current = head;
-    while (current->next != last) {
-        current = current->next;
-    }
-
-    // Удаляем последний элемент
-    printf("Удалён элемент: %s\n", last->inf);
-    free(last);
-    last = current;
-    last->next = NULL;
+    struct node* temp = head;
+    printf("Удалён элемент: %s\n", head->inf);
+    head = head->next;
+    free(temp);
     dlinna--;
 }
 
