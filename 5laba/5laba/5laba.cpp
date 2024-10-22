@@ -1,12 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <time.h>
 
 int main() {
 	setlocale(LC_ALL, "Russian");
 
-	int m = 5, Gsize = 0;
+	srand(time(NULL));
+
+	int m, Gsize = 0;
 	int** G, * deg;
+
+	printf("Введите значение графа: ");
+	scanf_s("%d", &m);
 
 	printf("1.1 задание\n");
 
@@ -57,7 +63,7 @@ int main() {
 			}
 		}
 		printf("Степень вершины %d = %d\n", i, deg[i]);
-		if (deg[i] == 0) printf("Вершина %d изалированная\n", i + 1);
+		if (deg[i] == 0) printf("Вершина %d изолированная\n", i + 1);
 		if (deg[i] == 1) printf("Вершина %d концевая\n", i + 1);
 		if (deg[i] == m) printf("Вершина %d доминирующая\n", i + 1);
 	}
@@ -110,7 +116,7 @@ int main() {
 
 	printf("\nРазмер граффа(по матрице инцидентности): %d\n", Gedge);
 
-	printf("\n2.3 задание");
+	printf("\n2.3 задание\n");
 
 	for (int i = 0; i < m; i++) {
 		int edge = 0;
@@ -119,7 +125,8 @@ int main() {
 				edge++;
 			}
 		}
-		if (edge == 0) printf("Вершина %d изалированная\n", i + 1);
+		printf("Степень вершины %d = %d\n", i + 1, edge);
+		if (edge == 0) printf("Вершина %d изолированная\n", i + 1);
 		if (edge == 1) printf("Вершина %d концевая\n", i + 1);
 		if (edge == Gedge) printf("Вершина %d доминирующая\n", i + 1);
 	}
