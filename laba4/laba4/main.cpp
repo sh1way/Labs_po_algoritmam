@@ -71,6 +71,14 @@ struct Node* find(struct Node* r, int data) {
     }
 }
 
+int fcount(struct Node* r, int l, int count) {
+    if (r == NULL) return count;
+    if (r->data == l) count++;
+    count = fcount(r->right, l, count);
+    count = fcount(r->left, l, count);
+    return count;
+}
+
 int main()
 {
     setlocale(LC_ALL, "");
@@ -100,6 +108,9 @@ int main()
 
     r = find(root, D);
     if (r != NULL) printf("Найден = %d\n", r->data);
+
+    co = fcount(root, D, 0);
+    printf("Количество = %d\n", co);
 
     return 0;
 }
