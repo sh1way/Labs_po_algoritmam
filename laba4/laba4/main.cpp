@@ -29,6 +29,11 @@ struct Node* CreateTree(struct Node* root, struct Node* r, int data) // создание
         return r;
     }
 
+    if (data == r->data) {
+        printf("Элемент %d уже существует\n", data);
+        return root;
+    }
+
     if (data > r->data)
         CreateTree(r, r->left, data);
     else
@@ -37,8 +42,7 @@ struct Node* CreateTree(struct Node* root, struct Node* r, int data) // создание
     return root;
 }
 
-void print_tree(struct Node* r, int l) // вывод дерева на экран
-{
+void print_tree(struct Node* r, int l) {
     if (r == NULL)
     {
         return;
@@ -109,8 +113,8 @@ int main()
     r = find(root, D);
     if (r != NULL) printf("Найден = %d\n", r->data);
 
-    co = fcount(root, D, 0);
-    printf("Количество = %d\n", co);
+    /*  co = fcount(root, D, 0);
+      printf("Количество = %d\n", co);*/
 
     return 0;
 }
