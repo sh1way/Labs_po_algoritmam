@@ -163,15 +163,17 @@ int** xorG(int** G1, int** G2, int size1, int size2) {
         }
     }
 
-    for (int i = 0; i < sizemin; i++) {
-        for (int j = sizemin; j < sizemax; j++) {
-            Gnew[i][j] = G1[i][j];
-        }
-    }
-
-    for (int i = sizemin; i < sizemax; i++) {
+    for (int i = 0; i < sizemax; i++) {
         for (int j = 0; j < sizemax; j++) {
-            Gnew[i][j] = G1[i][j];
+            if (i < size1 && j < size1 && G1[i] != NULL && G1[i][j] != NULL) {
+                Gnew[i][j] = G1[i][j];
+            }
+            else if (i < size2 && j < size2 && G2[i] != NULL && G2[i][j] != NULL) {
+                Gnew[i][j] = G2[i][j];
+            }
+            else {
+                Gnew[i][j] = 0;
+            }
         }
     }
 
@@ -223,6 +225,58 @@ int main(void) {
     int nG5 = nG3;
     printf("\nКольцевая сумма графов\n");
     printG(G5, nG5);
+
+    int action;
+    while (1) {
+        printf("\nВыберите действие:\n");
+        printf("1. Отождествление вершин\n");
+        printf("2. Стягивание ребра\n");
+        printf("3. Расщепление вершины\n");
+        printf("4. Выход\n");
+        printf("Введите номер действия: ");
+        scanf_s("%d", &action);
+
+        if (action == 4) break;
+
+        int v1, v2;
+        switch (action) {
+        case 1:
+            printf("Введите вершины для отождествления (v1, v2): ");
+            scanf_s("%d %d", &v1, &v2);
+            G1 = unionV(G1, nG1, v1, v2);
+            nG1--; // Уменьшаем количество вершин
+            printf("После отождествления:\n");
+            printG(G1, nG1);
+            break;
+        case 2:
+            printf("Введите вершины для стягивания (v1, v2): ");
+            scanf_s("%d %d", &v1, &v2);
+            G1 = contrE(G1, nG1, v1, v2);
+            printf("После стягивания:\n");
+            printG(G1, nG1);
+            break;
+        case 3:
+            printf("Введите вершину для расщепления (v): ");
+            scanf_s("%d", &v1);
+            G1 = splitV(G1, nG1, v1);
+            nG1++; // Увеличиваем количество вершин
+            printf("После расщепления:\n");
+            printG(G1, nG1);
+            break;
+        default:
+            printf("Неверный выбор. Пожалуйста, попробуйте снова.\n");
+            break;
+        }
+    }
+
+    for (int i = 0; i < nG1; i++) {
+        free(G1[i]);
+    }
+    free(G1);
+    for (int i = 0; i < nG2; i++) {
+        free(G2[i]);
+    }
+    free(G2);
 
     return 0;
 }
