@@ -193,6 +193,33 @@ int** xorG(int** G1, int** G2, int size1, int size2) {
 
     return Gnew;
 }
+//декартово произведение
+int** cartesianProduct(int** G1, int size1, int** G2, int size2) {
+    int newSize = size1 * size2;
+    int** Gnew = createG(newSize);
+
+    for (int u1 = 0; u1 < size1; u1++) {
+        for (int v1 = 0; v1 < size2; v1++) {
+            int u = u1 * size2 + v1;
+
+            for (int v2 = 0; v2 < size2; v2++) {
+                if (G2[v1][v2] == 1) {
+                    int v = u1 * size2 + v2;
+                    Gnew[u][v] = 1;
+                }
+            }
+
+            for (int u2 = 0; u2 < size1; u2++) {
+                if (G1[u1][u2] == 1) {
+                    int v = u2 * size2 + v1;
+                    Gnew[u][v] = 1;
+                }
+            }
+        }
+    }
+
+    return Gnew;
+}
 
 int main(void) {
     srand(time(0));
@@ -225,6 +252,10 @@ int main(void) {
     int nG5 = nG3;
     printf("\nКольцевая сумма графов\n");
     printG(G5, nG5);
+
+    int** G6 = cartesianProduct(G1, nG1, G2, nG2);
+    printf("\nДекартово произведение графов:\n");
+    printG(G6, nG1 * nG2);
 
     int action;
     while (1) {
