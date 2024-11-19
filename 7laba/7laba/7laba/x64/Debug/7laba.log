@@ -1,0 +1,3 @@
+﻿  main.cpp
+D:\Labs_po_algoritmam\7laba\7laba\main.cpp(46,6): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  7laba.vcxproj -> D:\Labs_po_algoritmam\7laba\7laba\x64\Debug\7laba.exe

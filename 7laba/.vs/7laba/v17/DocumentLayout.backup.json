@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Labs_po_algoritmam\\7laba\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A40FD99D-5FF8-4993-9E1C-E077F9AFEA7E}|7laba\\7laba.vcxproj|D:\\Labs_po_algoritmam\\7laba\\7laba\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A40FD99D-5FF8-4993-9E1C-E077F9AFEA7E}|7laba\\7laba.vcxproj|solutionrelative:7laba\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\Labs_po_algoritmam\\7laba\\7laba\\main.cpp",
+              "RelativeDocumentMoniker": "7laba\\main.cpp",
+              "ToolTip": "D:\\Labs_po_algoritmam\\7laba\\7laba\\main.cpp",
+              "RelativeToolTip": "7laba\\main.cpp",
+              "ViewState": "AgIAADMAAAAAAAAAAAAUwEUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-19T11:48:51.161Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
